@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1034730077888",
+    "project_id": "shopapptask2",
+    "storage_bucket": "shopapptask2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034730077888:android:a38b867af8d80e61ba7725",
+        "android_client_info": {
+          "package_name": "com.example.shoptask2android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBL26lKivdt4KA7j60GlxY3tegtTn2skSA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
