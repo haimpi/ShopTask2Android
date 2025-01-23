@@ -16,6 +16,7 @@ import androidx.navigation.Navigation;
 
 import com.example.shoptask2android.R;
 import com.example.shoptask2android.models.Account;
+import com.example.shoptask2android.models.Product;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -114,8 +115,8 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                Account value = dataSnapshot.getValue(Account.class);
-                Toast.makeText(MainActivity.this, value.getEmail(), Toast.LENGTH_SHORT).show();
+                Product value = dataSnapshot.getValue(Product.class);
+                Toast.makeText(MainActivity.this, value.getPrice(), Toast.LENGTH_SHORT).show();
             }
 
             @Override

@@ -42,7 +42,7 @@ public class FragmentAddItem extends DialogFragment {
         database = FirebaseDatabase.getInstance();
 
         // Populate the spinner with sample data
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, new String[]{"Item 1", "Item 2", "Item 3"});
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, new String[]{"Bread", "Milk", "Chocolate"});
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         itemSpinner.setAdapter(adapter);
 
@@ -84,7 +84,7 @@ public class FragmentAddItem extends DialogFragment {
         // Generate unique product ID
         String productId = userProductsRef.push().getKey();
         if (productId != null) {
-            Product newProduct = new Product(name, amount, price);
+            Product newProduct = new Product(productId, name, amount, price);
             userProductsRef.child(productId).setValue(newProduct)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
