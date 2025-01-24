@@ -9,15 +9,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
+        android:supportsRtl="false"
         android:theme="@style/Theme.ShopTask2Android"
         tools:targetApi="31">
-        <activity
-            android:name=".activitys.ShopActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activitys.MainActivity2"
-            android:exported="false" />
         <activity
             android:name=".activitys.MainActivity"
             android:exported="true">

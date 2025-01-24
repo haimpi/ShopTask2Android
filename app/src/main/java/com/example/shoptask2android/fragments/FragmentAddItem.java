@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.shoptask2android.R;
@@ -27,7 +26,6 @@ public class FragmentAddItem extends DialogFragment {
     private Button addItemButton;
 
     private FirebaseDatabase database;
-    private DatabaseReference productsRef;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,15 +36,12 @@ public class FragmentAddItem extends DialogFragment {
         itemPrice = view.findViewById(R.id.item_price);
         addItemButton = view.findViewById(R.id.add_item_button);
 
-        // Firebase initialization
         database = FirebaseDatabase.getInstance();
 
-        // Populate the spinner with sample data
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, new String[]{"Bread", "Milk", "Chocolate"});
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         itemSpinner.setAdapter(adapter);
 
-        // Add item to Firebase on button click
         addItemButton.setOnClickListener(v -> addItemToFirebase());
 
         return view;
@@ -74,14 +69,11 @@ public class FragmentAddItem extends DialogFragment {
             return;
         }
 
-        // Get current user's UID
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String userId = auth.getCurrentUser().getUid();
 
-        // Firebase reference to user's products
         DatabaseReference userProductsRef = database.getReference("users").child(userId).child("products");
 
-        // Generate unique product ID
         String productId = userProductsRef.push().getKey();
         if (productId != null) {
             Product newProduct = new Product(productId, name, amount, price);
