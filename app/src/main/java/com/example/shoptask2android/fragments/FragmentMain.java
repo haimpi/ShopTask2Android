@@ -126,7 +126,7 @@ public class FragmentMain extends Fragment {
 
     private void restoreItemRecycleView(){
         if (swipedPosition != -1) {
-            productAdapter.notifyItemChanged(swipedPosition); // Restore the item in RecyclerView
+            productAdapter.notifyItemChanged(swipedPosition);
             swipedPosition = -1;
         }
     }
@@ -157,7 +157,6 @@ public class FragmentMain extends Fragment {
         userProductsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Loop through all products to find the matching product by ID
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Product product = snapshot.getValue(Product.class);
                     if (product != null && productToRemove.equals(product)) {
