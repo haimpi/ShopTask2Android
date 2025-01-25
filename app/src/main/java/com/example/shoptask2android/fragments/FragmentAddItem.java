@@ -24,7 +24,6 @@ public class FragmentAddItem extends DialogFragment {
     private EditText itemAmount, itemPrice;
     private Spinner itemSpinner;
     private Button addItemButton;
-
     private FirebaseDatabase database;
 
     @Override

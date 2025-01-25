@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -35,6 +36,7 @@ public class FragmentMain extends Fragment {
     private RecyclerView shopRecyclerView;
     private ProductAdapter productAdapter;
     private List<Product> productList;
+    private TextView userTextView;
     private FirebaseDatabase database;
     private DatabaseReference userProductsRef;
     private int swipedPosition = -1;
@@ -44,6 +46,7 @@ public class FragmentMain extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
+        userTextView = view.findViewById(R.id.tvUser);
         addItemBtn = view.findViewById(R.id.btn_mainAddItem);
         shopRecyclerView = view.findViewById(R.id.shop_recycler_view);
 
@@ -69,6 +72,7 @@ public class FragmentMain extends Fragment {
         String userId = auth.getCurrentUser().getUid();
         database = FirebaseDatabase.getInstance();
         userProductsRef = database.getReference("users").child(userId).child("products");
+        userTextView.setText(auth.getCurrentUser().getEmail());
 
         userProductsRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -90,6 +94,7 @@ public class FragmentMain extends Fragment {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Handle error
+                Toast.makeText(getContext(), "Error fetching data", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -130,6 +135,7 @@ public class FragmentMain extends Fragment {
             swipedPosition = -1;
         }
     }
+
     private void showRemoveConfirmationDialog(Product productToRemove, int position) {
         new AlertDialog.Builder(getContext())
                 .setTitle("Delete Product")
@@ -146,7 +152,6 @@ public class FragmentMain extends Fragment {
                 })
                 .show();
     }
-
 
     private void removeProductFromFirebase(Product productToRemove, int position) {
         FirebaseAuth auth = FirebaseAuth.getInstance();

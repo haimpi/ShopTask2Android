@@ -17,6 +17,15 @@
         android:layout_marginBottom="24dp"
         android:fontFamily="sans-serif" />
 
+    <TextView
+        android:id="@+id/tvUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="user"
+        android:textStyle="italic"
+        android:textSize="15sp"/>
+
     <Button
         android:id="@+id/btn_mainAddItem"
         android:layout_width="wrap_content"
